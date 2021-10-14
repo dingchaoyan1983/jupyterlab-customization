@@ -53,6 +53,8 @@ REPO_ROOT = osp.abspath(osp.join(HERE, '..'))
 # The dev mode directory.
 DEV_DIR = osp.join(REPO_ROOT, 'dev_mode')
 
+SRC_PACKAGES_DIR = osp.join(REPO_ROOT, 'packages')
+
 
 # If we are pinning the package, rename it `pin@<alias>`
 PIN_PREFIX = 'pin@'
@@ -1221,6 +1223,22 @@ class _AppHandler(object):
             if real_error or not osp.exists(templates):
                 raise
 
+        # Ensure a clean templates directory
+        packages = pjoin(staging, '..' , 'packages')
+        if osp.exists(packages):
+            _rmtree(packages, self.logger)
+
+        try:
+            shutil.copytree(SRC_PACKAGES_DIR, packages)
+        except shutil.Error as error:
+            # `copytree` throws an error if copying to + from NFS even though
+            # the copy is successful (see https://bugs.python.org/issue24564
+            # and https://github.com/jupyterlab/jupyterlab/issues/5233)
+
+            real_error = '[Errno 22]' not in str(error) and '[Errno 5]' not in str(error)
+            if real_error or not osp.exists(packages):
+                raise
+
         # Ensure a clean linked packages directory.
         linked_dir = pjoin(staging, 'linked_packages')
         if osp.exists(linked_dir):
@@ -1327,8 +1345,8 @@ class _AppHandler(object):
             if os.name == 'nt':
                 path = path.lower()
             return path
-
-        jlab['linkedPackages'] = dict()
+        # 去掉这个因为我们在staging的build环境里面需要用到linkedPackages
+        # jlab['linkedPackages'] = dict()
 
         # Handle local extensions.
         for (key, source) in local.items():

@@ -1,3 +1,27 @@
+## 定制化开发
+
+1. 安装`virtualenv`
+2. 在根路径执行`virtualevn venv`
+3. 在根路径执行`source ./venv/bin/activate`
+4. 执行`pip install -e .`
+5. 执行`jlpm install`
+6. 执行`jlpm run build`
+7. `jupyter lab --dev-mode --watch`
+
+## 定制化部署
+
+1. 安装`virtualenv`
+2. 在根路径执行`virtualevn venv`
+3. 在根路径执行`source ./venv/bin/activate`
+4. 执行`pip install -e .`
+5. 执行`jlpm run build:packages`
+6. `jupyter lab build --debug --name="量化引擎"` 生成最终的包含了 extensions 的前端静态资源文件
+7. `jupyter lab` 启动包含了 extensions 的 jupyterlab 的服务
+
+## 怎样去清理 staging 的静态资源
+
+`jupyter lab clean`
+
 **[Installation](#installation)** |
 **[Documentation](http://jupyterlab.readthedocs.io)** |
 **[Contributing](#contributing)** |
