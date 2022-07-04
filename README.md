@@ -1,26 +1,26 @@
-## 定制化开发
+## customization development
 
-1. 安装`virtualenv`
-2. 在根路径执行`virtualevn venv`
-3. 在根路径执行`source ./venv/bin/activate`
-4. 执行`pip install -e .`
-5. 执行`jlpm install`
-6. 执行`jlpm run build`
+1. install `virtualenv`
+2. at root run `virtualevn venv`
+3. at root run `source ./venv/bin/activate`
+4. run `pip install -e .`
+5. run `jlpm install`
+6. run `jlpm run build`
 7. `jupyter lab --dev-mode --watch`
 
-## 定制化部署
+## customization deploy
 
-1. 安装`virtualenv`
-2. 在根路径执行`virtualevn venv`
-3. 在根路径执行`source ./venv/bin/activate`
-4. 执行`pip install -e .`
-5. 执行`jlpm run build:packages`
-6. `jupyter lab build --debug --name="量化引擎"` 生成最终的包含了 extensions 的前端静态资源文件
-7. `jupyter lab` 启动包含了 extensions 的 jupyterlab 的服务
+1. install `virtualenv`
+2. at root run `virtualevn venv`
+3. at root run`source ./venv/bin/activate`
+4. run `pip install -e .`
+5. run `jlpm run build:packages`
+6. `jupyter lab build --debug --name="quant engine"` generate the final frontend assets which include the extensions
+7. `jupyter lab` start the jupyterlab service that include extensions
 
-## 怎样去清理 staging 的静态资源
+## how to remove staging assets
 
-`jupyter lab clean`
+run `jupyter lab clean`
 
 **[Installation](#installation)** |
 **[Documentation](http://jupyterlab.readthedocs.io)** |
